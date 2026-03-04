@@ -1,10 +1,10 @@
 class Macmon < Formula
   desc "Lightweight macOS system monitor with native process picker UI"
   homepage "https://github.com/chochy2001/macmon"
-  url "https://github.com/chochy2001/macmon/releases/download/v3.1.4/macmon-3.1.4-macos-universal.tar.gz"
-  sha256 "32f5e2b0de2c21ff0d0503b6389467a571a700b03578d6be5af32b60f4c44d92"
+  url "https://github.com/chochy2001/macmon/releases/download/v3.2.0/macmon-3.2.0-macos-universal.tar.gz"
+  sha256 "83b16d9876d1313b764f2195ffb3522fb49e537b7fe0cd565fa01355cbcc4ff4"
   license "MIT"
-  version "3.1.4"
+  version "3.2.0"
 
   depends_on "jq"
   depends_on :macos => :ventura
