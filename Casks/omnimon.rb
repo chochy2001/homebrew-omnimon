@@ -7,26 +7,26 @@ cask "omnimon" do
   desc "Cross-platform system monitor, process manager, and AI assistant"
   homepage "https://github.com/chochy2001/omnimon"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "OmniMon.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-rd", "com.apple.quarantine", "#{appdir}/OmniMon.app"],
-                   sudo: false
-    ohai "Launching OmniMon..."
-    system_command "/usr/bin/open", args: ["#{appdir}/OmniMon.app"]
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:           ["-rd", "com.apple.quarantine", "/Applications/OmniMon.app"],
+        must_succeed:   false,
+        writable_paths: ["OmniMon.app"],
+        writable_base:  :appdir
   end
 
   uninstall quit: "com.omnimon.desktop"
 
   zap trash: [
+    "~/.config/macmon",
+    "~/.local/share/macmon",
     "~/Library/Application Support/com.omnimon.desktop",
     "~/Library/Caches/com.omnimon.desktop",
     "~/Library/Preferences/com.omnimon.desktop.plist",
-    "~/.config/macmon",
-    "~/.local/share/macmon"
   ]
 
   caveats <<~EOS
